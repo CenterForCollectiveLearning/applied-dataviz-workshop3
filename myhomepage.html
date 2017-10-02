@@ -1,12 +1,13 @@
 <html>
      <head>
         <title>Jingxian Zhang's Website</title>
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
         <style>
         body {
             margin: 0;
             padding: 3%;
-            font-family: 'PT Sans', sans-serif;
+            font-family: 'Open Sans', sans-serif;
         }
         .page {
             margin: 0 auto;
@@ -20,7 +21,9 @@
             margin-bottom: 10px;
             height: 300px;
             width: 100%;
-            background-color: black;
+            padding-top: 100px;
+            padding-bottom: 100px;
+            /*background-color: black;*/
         }
         #map{
             height: 400px;
@@ -29,21 +32,57 @@
             height: 400px;
         }
         #favorite{
-            height: 350px;
+            height: 500px;
         }
         .text{
             position: relative;
             float: left;
-            width: 30%;
+            width: 25%;
             height: 100%;
-            background-color: darkseagreen;
-            text-align: center;
-            line-height: 100px;
+            /*background-color: darkseagreen;*/
+            font-weight: bold;
+            font-size: 20px;
+            /*text-align: center;*/
+        }
+        .text p{
+            font-weight: normal;
+            font-size: 14px;
+            text-align: justify;
+            color: gray;
         }
         .chart{
             position: relative;
             float: left;
             height: 100%;
+        }
+        .allFavorites {
+            position: relative;
+            float: right;
+            width: 70%;
+            height: 100%;
+            background-color: white;
+            text-align: center;
+        }
+        .favorites{
+            width: 50%;
+            height: 50%;
+            float: left;
+            text-align: center;
+        }
+        .favorites h4{
+            margin-top: 40px;
+            font-weight: bold;
+            font-size: 18px
+        }
+        .favorites div svg{
+            margin: 0 auto;
+            width: 50%;
+            margin-left: 70px;
+        }
+        hr{
+           height: 1px;
+           border: 0;
+           background-image: linear-gradient(135deg, #F37055 0%, #EF4E7B 52%, #C55B95 77%, #A166AB 100%);
         }
 /*        .images{
             left: 30%;
@@ -52,29 +91,76 @@
             background-color: darkseagreen;
             text-align: center;
         }*/
-        
+
         </style>
     </head>
     <body>
         <div class="page">
           <h1 class="center">Jingxian Zhang</h1>
-          <h3>Masters student | MIT Media Lab | Collective Learning | jingxian@mit.edu</h3>
+          <h4>Masters student | MIT Media Lab | Collective Learning | jingxian@mit.edu</h3>
           <div id="viz-container">
               <div class="single_viz" id="map">
-                  <div class="text">My Path</div>
+                  <div class="text">
+                    My Path
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and scrambled it to make
+                      a type specimen book. </p>
+                  </div>
                   <svg class="chart" id="svg_map" width="420"></svg>
               </div>
+
+              <hr/>
+
               <div class="single_viz" id="bubble">
                   <div class="text">
-                      <p>In My Leisure Time</p>
-                      <p>Some words</p>
+                      In My Leisure Time
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make
+                        a type specimen book. </p>
                   </div>
                   <svg class="chart" id="svg_bubble" width="70%"></svg>
               </div>
+
+              <hr/>
+
               <div class="single_viz" id="favorite">
-                  <div class="text">My Favorite...</div>
-                  <div class="images"></div>
-              </div>
+                  <div class="text">
+                    My Favorite ..
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and scrambled it to make
+                      a type specimen book. </p>
+                  </div>
+                  <div class="allFavorites">
+                    <div class="favorites">
+                      <h4> Color </h4>
+                      <div>
+                        <svg>
+                          <circle cx="50" cy="50" r="40" fill="#4595e5"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="favorites">
+                      <h4> Book </h4>
+                        <img src="images/whyInformationGrows.jpg" width="100px" height= "150"/>
+                    </div>
+                    <div class="favorites">
+                      <h4> Animal </h4>
+                      <img src="https://media.giphy.com/media/3OQLu9mzGcN5C/giphy.gif" width="220px" height= "150"/>
+                    </div>
+                    <div class="favorites">
+                      <h4> Cousin </h4>
+                      <a href="http://allrecipes.com/recipes/17245/main-dish/pasta/"  target="_blank">
+                        <img src="images/pasta.png" width="220px" height= "150"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <hr/>
+
               <div class="single_viz" >
                   <div class="text">Put anything you'd like to share!</div>
                   <svg class="chart" id="chart" width="420" height="120"></svg>
@@ -86,7 +172,8 @@
             //bubble chart
             var diameter = 420;
             var format = d3.format(",d");
-            var color = d3.scale.category10();
+            var color = d3.scale.category10()
+             .range( ['#2AA4A9', '#57B28D','#FBAE4B', '#F16045', '#D12258', '#5E4E73', '#C2B49B', '#734743', '#80A464', '#435773']);
 
             var bubble = d3.layout.pack()
                 .sort(null)
@@ -106,7 +193,7 @@
                 .style("border-radius", "6px")
                 .style("font", "12px PT Sans")
                 .text("tooltip");
-                
+
             var habbits = [
                 {category: "sports", name: "running", value: 0.3},
                 {category: "sports", name: "swimming", value: 0.1},
