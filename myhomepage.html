@@ -3,162 +3,96 @@
 <html>
      <head>
         <title>Jingxian Zhang's Website</title>
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-        <style>
-        body {
-            margin: 0;
-            padding: 3%;
-            font-family: 'PT Sans', sans-serif;
-        }
-        .page {
-            margin: 0 auto;
-            max-width: 900px;
-            width: 90%;
-        }
-        #viz-container{
-            margin: 0 auto;
-        }
-        .single_viz{
-            margin-bottom: 10px;
-            height: 300px;
-            width: 100%;
-            /*background-color: black;*/
-        }
-        #map{
-            height: 400px;
-        }
-        #bubble{
-            height: 400px;
-        }
-        #favorite{
-            height: 350px;
-        }
-        .text{
-            position: relative;
-            float: left;
-            width: 30%;
-            height: 100%;
-            text-align: center;
-            line-height: 100px;
-        }
-        .chart{
-            position: relative;
-            float: left;
-            height: 100%;
-            width: 70%;
-        }
-/*        .images{
-            left: 30%;
-            width: 70%;
-            height: 100%;
-            background-color: darkseagreen;
-            text-align: center;
-        }*/
-        
-        </style>
+        <!-- <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./myhomepage.css">
     </head>
     <body>
         <div class="page">
           <h1 class="center">Jingxian Zhang</h1>
-          <h3>Masters student | MIT Media Lab | Collective Learning | jingxian@mit.edu</h3>
+          <h4>Masters student | MIT Media Lab | Collective Learning | jingxian@mit.edu</h3>
           <div id="viz-container">
               <div class="single_viz" id="map">
-                  <div class="text">My Path</div>
-                  <svg class="chart" id="svg_map"></svg>
+                  <div class="text">
+                    My Path
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and scrambled it to make
+                      a type specimen book. </p>
+                  </div>
+                  <div class="chart" id="svg_map"></div>
               </div>
+
+              <hr/>
+
               <div class="single_viz" id="bubble">
                   <div class="text">
-                      <p>In My Leisure Time</p>
-                      <p>Some words</p>
+                      In My Leisure Time
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make
+                        a type specimen book. </p>
                   </div>
                   <svg class="chart" id="svg_bubble"></svg>
               </div>
+
+              <hr/>
+
               <div class="single_viz" id="favorite">
-                  <div class="text">My Favorite...</div>
-                  <div class="images"></div>
-              </div>
+                  <div class="text">
+                    My Favorite ..
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and scrambled it to make
+                      a type specimen book. </p>
+                  </div>
+                  <div class="allFavorites">
+                    <div class="favorites">
+                      <h4> Color </h4>
+                      <div>
+                        <svg>
+                          <circle cx="50" cy="50" r="40" fill="#4595e5"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="favorites">
+                      <h4> Book </h4>
+                        <img src="images/whyInformationGrows.jpg" width="100" height= "150"/>
+                    </div>
+                    <div class="favorites">
+                      <h4> Animal </h4>
+                      <img src="https://media.giphy.com/media/3OQLu9mzGcN5C/giphy.gif" width="220" height= "150"/>
+                    </div>
+                    <div class="favorites">
+                      <h4> Cuisine </h4>
+                      <a href="http://allrecipes.com/recipes/17245/main-dish/pasta/"  target="_blank">
+                        <img src="images/pasta.png" width="220" height= "150"/>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <hr/>
+
               <div class="single_viz" >
                   <div class="text">Put anything you'd like to share!</div>
                   <svg class="chart" id="chart" width="420" height="120"></svg>
               </div>
           </div>
         </div>
+        <!--<script src="./d3plus.v2.js"></script>-->
+<!--        <script src="http://d3plus.org/js/d3.js"></script>
+        <script src="http://d3plus.org/js/d3plus.js"></script>
+        <script src="http://d3plus.org/js/topojson.js"></script>-->
         <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script src="./d3plus.v2.js"></script>
+        <script src="http://d3js.org/queue.v1.min.js"></script>
+        <script src="http://d3js.org/topojson.v1.min.js"></script>
+        <script src="./datamaps.world.min.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <script src="./map.js"></script>
+        <script src="./bubble.js"></script>
         <script>
-            //map using d3+
-            const points = [
-                {id: "Boston", value: 1834, point: [-71.0589, 42.3601], country: "usa"},
-                {id: "Champaign", value: 3360, point: [-88.243383, 40.116420], country: "usa"},
-                {id: "Hefei", value: 2602, point: [117.227219, 31.820591], country: "china"},
-                {id: "Tianjin", value: 4302, point: [117.361648, 39.343357], country: "china"}
-            ];
-
-            let geomap = new d3plus.Geomap()
-                .select("#svg_map")
-                .data(points)
-                .ocean("#eef")
-                .tiles(true)
-                .pointSizeMin(10)
-                .render();
-
-            //map using d3 and leaflet
             
-            //bubble chart
-            var diameter = 420;
-            var format = d3.format(",d");
-            var color = d3.scale.category10();
-
-            var bubble = d3.layout.pack()
-                .sort(null)
-                .size([diameter * 1.4, diameter])
-                .padding(1.5);
-
-            var svg = d3.select("body").select("#svg_bubble");
-
-            var tooltip = d3.select("body")
-                .append("div")
-                .style("position", "absolute")
-                .style("z-index", "10")
-                .style("visibility", "hidden")
-                .style("color", "white")
-                .style("padding", "8px")
-                .style("background-color", "rgba(0, 0, 0, 0.75)")
-                .style("border-radius", "6px")
-                .style("font", "12px PT Sans")
-                .text("tooltip");
-                
-            var habbits = [
-                {category: "sports", name: "running", value: 0.3},
-                {category: "sports", name: "swimming", value: 0.1},
-                {category: "sports", name: "badminton", value: 0.1},
-                {category: "cooking", name: "cooking", value: 0.3},
-                {category: "music", name: "piano", value: 0.3}
-            ];
-            var node = svg.selectAll(".node")
-                .data(bubble.nodes({children:habbits}).filter(function(d) { return !d.children; }))
-              .enter().append("g")
-                .attr("class", "node")
-                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-            node.append("circle")
-                .attr("r", function(d) { console.log(d);return d.r; })
-                .style("fill", function(d) { return color(d.category); })
-                .on("mouseover", function(d) {
-                        tooltip.text(d.name + ": " + (d.value*100) + "%");
-                        tooltip.style("visibility", "visible");
-                })
-                .on("mousemove", function() {
-                    return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
-                })
-                .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
-
-            node.append("text")
-                .attr("dy", ".3em")
-                .style("text-anchor", "middle")
-                .style("pointer-events", "none")
-                .text(function(d) { return d.name.substring(0, d.r / 3); });
-
         </script>
     </body>
 </html>
