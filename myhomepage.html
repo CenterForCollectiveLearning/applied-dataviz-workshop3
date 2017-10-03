@@ -1,3 +1,5 @@
+<!doctype html>
+<meta charset="utf-8">
 <html>
      <head>
         <title>Jingxian Zhang's Website</title>
@@ -20,7 +22,7 @@
             margin-bottom: 10px;
             height: 300px;
             width: 100%;
-            background-color: black;
+            /*background-color: black;*/
         }
         #map{
             height: 400px;
@@ -36,7 +38,6 @@
             float: left;
             width: 30%;
             height: 100%;
-            background-color: darkseagreen;
             text-align: center;
             line-height: 100px;
         }
@@ -44,6 +45,7 @@
             position: relative;
             float: left;
             height: 100%;
+            width: 70%;
         }
 /*        .images{
             left: 30%;
@@ -62,14 +64,14 @@
           <div id="viz-container">
               <div class="single_viz" id="map">
                   <div class="text">My Path</div>
-                  <svg class="chart" id="svg_map" width="420"></svg>
+                  <svg class="chart" id="svg_map"></svg>
               </div>
               <div class="single_viz" id="bubble">
                   <div class="text">
                       <p>In My Leisure Time</p>
                       <p>Some words</p>
                   </div>
-                  <svg class="chart" id="svg_bubble" width="70%"></svg>
+                  <svg class="chart" id="svg_bubble"></svg>
               </div>
               <div class="single_viz" id="favorite">
                   <div class="text">My Favorite...</div>
@@ -82,7 +84,26 @@
           </div>
         </div>
         <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="./d3plus.v2.js"></script>
         <script>
+            //map using d3+
+            const points = [
+                {id: "Boston", value: 1834, point: [-71.0589, 42.3601], country: "usa"},
+                {id: "Champaign", value: 3360, point: [-88.243383, 40.116420], country: "usa"},
+                {id: "Hefei", value: 2602, point: [117.227219, 31.820591], country: "china"},
+                {id: "Tianjin", value: 4302, point: [117.361648, 39.343357], country: "china"}
+            ];
+
+            let geomap = new d3plus.Geomap()
+                .select("#svg_map")
+                .data(points)
+                .ocean("#eef")
+                .tiles(true)
+                .pointSizeMin(10)
+                .render();
+
+            //map using d3 and leaflet
+            
             //bubble chart
             var diameter = 420;
             var format = d3.format(",d");
