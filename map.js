@@ -1,5 +1,7 @@
-/*
-//map using d3+ (color the countries)
+
+// Map using d3plus (color the countries)
+// 1. Modify the dataset to reflect your personal journey
+
 var sample_data = [
     {"year": "1992 - 2014", "country": "aschn", "name": "China", "tags": "birth country; undergraduate", "color": "#ABDDA4"},
     {"year": "2014", "country": "eudeu", "name": "Germany", "tags": "conference", "color": "#ABDDA4"},
@@ -8,29 +10,32 @@ var sample_data = [
     {"year": "2017", "country": "sachl", "name": "Chile", "tags": "research", "color": "#ABDDA4"}
 ];
 
+// 2. Add a tooltip to show the year and the tags fields from your dataset
 var visualization = d3plus.viz()
     .container("#svg_map")        // container DIV to hold the visualization
     .data(sample_data)            // data to use with the visualization
     .coords({
         "mute": ["anata"],
         "value": "http://d3plus.org/topojson/countries.json"
-    }) // pass topojson coordinates
+    })                            // pass topojson coordinates
     .type("geo_map")              // visualization type
     .id("country")                // key for which our data is unique on
     .text("name")                 // key to use for display text
     .color("color")               // key for coloring countries
-    //this is removed//.tooltip(["year", "tags"])
     .draw();                      // finally, draw the visualization!
-*/
 
-//using datamaps (d3) http://datamaps.github.io
+
+// Using datamaps (d3) http://datamaps.github.io
+
+/*
+// 3. Add a new color for a new category
+
 var basic_choropleth = new Datamap({
   element: document.getElementById("svg_map"),
   projection: 'mercator',
   fills: {
     defaultFill: "#CCCCCC",
     authorHasTraveledTo: "#ABDDA4"
-    //this is removed//authorHasStudiedIn: "#AB55A4"
   },
   data: {
     CHN: { fillKey: "authorHasTraveledTo", year: "1992 - 2014" },
@@ -48,8 +53,7 @@ var basic_choropleth = new Datamap({
     }
   }
 });
+
+// 4. Add a legend to show the color of all categories included in your dataset
 var legend = d3.select("#svg_map").append("svg").attr("id", "legend");
-//this is removed//legend.append("rect").attr("x", "200").attr("y", "10").attr("width", "20").attr("height", "20").attr("fill", "#ABDDA4");
-//this is removed//legend.append("text").attr("x", "225").attr("y", "24").attr("font-size", "12px").text("Traveled to");
-//this is removed//legend.append("rect").attr("x", "350").attr("y", "10").attr("width", "20").attr("height", "20").attr("fill", "#AB55A4");
-//this is removed//legend.append("text").attr("x", "375").attr("y", "24").attr("font-size", "12px").text("Studied in");
+*/
