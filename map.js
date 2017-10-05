@@ -1,3 +1,4 @@
+/*
 //map using d3+ (color the countries)
 var sample_data = [
     {"year": "1992 - 2014", "country": "aschn", "name": "China", "tags": "birth country; undergraduate", "color": "#ABDDA4"},
@@ -18,17 +19,18 @@ var visualization = d3plus.viz()
     .id("country")                // key for which our data is unique on
     .text("name")                 // key to use for display text
     .color("color")               // key for coloring countries
-    .tooltip(["year", "tags"])              // keys to place in tooltip
+    //this is removed//.tooltip(["year", "tags"])
     .draw();                      // finally, draw the visualization!
+*/
 
-
-/*//using datamaps (d3) http://datamaps.github.io
+//using datamaps (d3) http://datamaps.github.io
 var basic_choropleth = new Datamap({
   element: document.getElementById("svg_map"),
   projection: 'mercator',
   fills: {
     defaultFill: "#CCCCCC",
     authorHasTraveledTo: "#ABDDA4"
+    //this is removed//authorHasStudiedIn: "#AB55A4"
   },
   data: {
     CHN: { fillKey: "authorHasTraveledTo", year: "1992 - 2014" },
@@ -45,4 +47,9 @@ var basic_choropleth = new Datamap({
                 '</strong></div>'].join('');
     }
   }
-});*/
+});
+var legend = d3.select("#svg_map").append("svg").attr("id", "legend");
+//this is removed//legend.append("rect").attr("x", "200").attr("y", "10").attr("width", "20").attr("height", "20").attr("fill", "#ABDDA4");
+//this is removed//legend.append("text").attr("x", "225").attr("y", "24").attr("font-size", "12px").text("Traveled to");
+//this is removed//legend.append("rect").attr("x", "350").attr("y", "10").attr("width", "20").attr("height", "20").attr("fill", "#AB55A4");
+//this is removed//legend.append("text").attr("x", "375").attr("y", "24").attr("font-size", "12px").text("Studied in");
