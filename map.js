@@ -30,7 +30,7 @@ var visualization = d3plus.viz()
 // 3. Add a new color for a new category
 
 var basic_choropleth = new Datamap({
-  element: d3.select("#svg_map"),
+  element: document.getElementById("svg_map"),
   projection: 'mercator',
   fills: {
     defaultFill: "#CCCCCC",
