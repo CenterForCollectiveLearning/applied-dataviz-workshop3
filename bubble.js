@@ -1,4 +1,4 @@
-//bubble chart
+// Bubble chart using D3
 var diameter = 420;
 var format = d3.format(",d");
 var colors = ['#2AA4A9', '#57B28D','#FBAE4B', '#F16045', '#D12258', '#5E4E73', '#C2B49B', '#734743', '#80A464', '#435773'];
@@ -18,6 +18,8 @@ var tooltip = d3.select("body") //set the tooltip
     .style("border-radius", "6px")
     .style("font", "12px PT Sans")
     .text("tooltip");
+
+// 1. Modify the dataset 
 var habbits = [
     {category: "sports", name: "running", alt: "helps me think:)", value: 0.3},
     {category: "sports", name: "swimming", alt: "I enjoy the quietness in the water", value: 0.1},
@@ -27,6 +29,8 @@ var habbits = [
     {category: "arts", name: "doodling", alt: "#$#%*&^$#@", value: 0.1},
     {category: "arts", name: "shows", alt: "watch with friends:D", value: 0.1}
 ];
+
+// 2. Change the color of the node when hovered over
 var node = svg.selectAll(".node")
     .data(bubble.nodes({children:habbits}).filter(function(d) { return !d.children; }))
   .enter().append("g")
@@ -36,7 +40,6 @@ node.append("circle")
     .attr("r", function(d) { return d.r; })
     .style("fill", function(d) { return color(d.category); })
     .on("mouseover", function(d) {
-            //this is removed//d3.select(this).style("fill", function(d) { return "rgba(220,220,220,0.8)"; });
             tooltip.text(d.alt);
             tooltip.style("visibility", "visible");
     })
@@ -44,16 +47,17 @@ node.append("circle")
         return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
     })
     .on("mouseout", function(){
-        //this is removed//d3.select(this).style("fill", function(d) { return color(d.category); });
         return tooltip.style("visibility", "hidden");
     });
+
+// 3. Change the font size to be based on node radius
 node.append("text")
     .attr("dy", ".3em")
     .style("text-anchor", "middle")
     .style("pointer-events", "none")
-    //this is removed//.style("font-size", function(d){ return 18/60*d.r + "px"}) //adjust font-size based on node radius
     .text(function(d) { return d.name; });
 
+// Legend to show all the categories in the dataset
 var legend = d3.select("#bubble").append("svg").attr("id", "legend");
 legend.append("rect").attr("id", "legend1")
     .attr("x", "380").attr("y", "10").attr("width", "20").attr("height", "20").attr("fill", color("sports"));
@@ -65,6 +69,7 @@ legend.append("rect").attr("id", "legend3")
     .attr("x", "640").attr("y", "10").attr("width", "20").attr("height", "20").attr("fill", color("arts"));
 legend.append("text").attr("x", "665").attr("y", "24").attr("font-size", "12px").text("Arts");
 
+// Function to shuffle the colors in the bubble chart
 function shuffle(){
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -90,6 +95,7 @@ function shuffle(){
     legend.select("#legend3").attr("fill", color("arts"));
 }
 
+// Function to filter out the nodes based on the user inputs
 function filter(category){
     d3.select(".dropbtn").text(category);
     switch(category){
