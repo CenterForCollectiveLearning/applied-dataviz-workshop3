@@ -24,7 +24,6 @@ var visualization = d3plus.viz()
     .color("color")               // key for coloring countries
     .draw();                      // finally, draw the visualization!
 
-
 // Using datamaps (d3) http://datamaps.github.io
 
 /*
