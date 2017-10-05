@@ -50,6 +50,12 @@
     height: 100%;
     width: 70%;
 }
+#legend{
+    position: relative;
+    float: left;
+    height: 60px;
+    width: 100%;
+}
 .allFavorites {
     position: relative;
     float: right;
@@ -79,3 +85,61 @@ hr{
    border: 0;
    background-image: linear-gradient(135deg, #F37055 0%, #EF4E7B 52%, #C55B95 77%, #A166AB 100%);
 }
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    width: 120px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 10px 10px;
+    font-size: 12px;
+    text-decoration: none;
+    display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    width: 120px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.button:hover {background-color: #3e8e41}
