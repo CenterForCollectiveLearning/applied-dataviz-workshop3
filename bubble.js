@@ -97,7 +97,7 @@ function shuffle(){
 
 // Function to filter out the nodes based on the user inputs
 function filter(category){
-    d3.select(".dropbtn").text(category);
+    d3.select(".dropbtn").select("#cat").text(category);
     switch(category){
         case 'all':
             svg.selectAll(".node")
