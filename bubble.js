@@ -70,7 +70,7 @@ legend.append("rect").attr("id", "legend3")
 legend.append("text").attr("x", "665").attr("y", "24").attr("font-size", "12px").text("Arts");
 
 // Function to shuffle the colors in the bubble chart
-function shuffle(){
+function shuffle_colors(){
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
         // While there remain elements to shuffle...
