@@ -1,6 +1,5 @@
 // Bubble chart using D3
 var diameter = 420;
-var format = d3.format(",d");
 var colors = ['#2AA4A9', '#57B28D','#FBAE4B', '#F16045', '#D12258', '#5E4E73', '#C2B49B', '#734743', '#80A464', '#435773'];
 var color = d3.scale.category10().range(colors);
 var bubble = d3.layout.pack()
